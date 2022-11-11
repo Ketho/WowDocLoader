@@ -6,6 +6,8 @@ local LOADER_FOLDER = "WowDocLoader"
 local ADDONS_FOLDER = "AddOns"
 local API_DOC = "Blizzard_APIDocumentation"
 local GEN_DOC = "Blizzard_APIDocumentationGenerated"
+local loader_path = Path.join(WowDocLoader_Path, LOADER_FOLDER)
+local addons_path = Path.join(WowDocLoader_Path, ADDONS_FOLDER)
 
 local function LoadFile(path)
 	if lfs.attributes(path) then
@@ -27,10 +29,10 @@ local function LoadAddon(path, name)
 end
 
 function m:main(flavor)
-	require(Path.join(LOADER_FOLDER, "Compat"))
-	LoadAddon(Path.join(ADDONS_FOLDER, API_DOC), API_DOC)
-	require(Path.join(LOADER_FOLDER, "MissingDocumentation"))
-	LoadAddon(Path.join(ADDONS_FOLDER, GEN_DOC), GEN_DOC)
+	require(Path.join(loader_path, "Compat"))
+	LoadAddon(Path.join(addons_path, API_DOC), API_DOC)
+	require(Path.join(loader_path, "MissingDocumentation"))
+	LoadAddon(Path.join(addons_path, GEN_DOC), GEN_DOC)
 end
 
 return m

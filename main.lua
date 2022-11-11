@@ -1,11 +1,17 @@
-local BRANCH = "mainline"
+local Path = require "path"
+local WowDocLoader = {}
 
-local GetResource = require("WowDocLoader.GetResource")
-GetResource:GetResource(BRANCH, "LuaEnum.lua")
+function WowDocLoader:main(base_path, branch)
+	WowDocLoader_Path = base_path
+	local GetResource = require(Path.join(WowDocLoader_Path, "WowDocLoader", "GetResource"))
+	GetResource:GetResource(branch, "LuaEnum.lua")
 
-local Loader = require("WowDocLoader.Loader")
-Loader:main()
+	local Loader = require(Path.join(WowDocLoader_Path, "WowDocLoader", "Loader"))
+	Loader:main()
 
-for k, v in pairs(APIDocumentation.systems) do
-	print(k, v.Name)
+	for k, v in pairs(APIDocumentation.systems) do
+		print(k, v.Name)
+	end
 end
+
+return WowDocLoader

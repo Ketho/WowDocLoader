@@ -7,11 +7,12 @@ local URL = "https://raw.githubusercontent.com/Ketho/BlizzardInterfaceResources/
 local CACHE = "cache"
 local INVALIDATION_TIME = 60*60
 
-function m:GetResource(BRANCH, name)
-	self:MakeDir(Path.join(CACHE, BRANCH))
+function m:GetResource(branch, name)
+	local cache_path = Path.join(WowDocLoader_Path, CACHE, branch)
+	self:MakeDir(cache_path)
 
-	local path = Path.join(CACHE, BRANCH, name)
-	local url = URL:format(BRANCH, name)
+	local path = Path.join(cache_path, name)
+	local url = URL:format(branch, name)
 	self:DownloadAndRun(path, url)
 end
 
