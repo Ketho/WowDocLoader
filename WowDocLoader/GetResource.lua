@@ -8,10 +8,12 @@ local CACHE = "cache"
 local INVALIDATION_TIME = 60*60
 
 function m:GetResource(branch, name)
-	local cache_path = Path.join(WowDocLoader_Path, CACHE, branch)
+	local cache_path = Path.join(WowDocLoader_Path, CACHE)
 	self:MakeDir(cache_path)
+	local branch_path = Path.join(cache_path, branch)
+	self:MakeDir(branch_path)
 
-	local path = Path.join(cache_path, name)
+	local path = Path.join(branch_path, name)
 	local url = URL:format(branch, name)
 	self:DownloadAndRun(path, url)
 end
