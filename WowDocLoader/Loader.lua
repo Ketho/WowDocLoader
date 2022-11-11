@@ -2,6 +2,11 @@ local lfs = require "lfs"
 local Path = require "path"
 local m = {}
 
+local SOURCE_FOLDER = "WowDocLoader"
+local ADDONS_FOLDER = "AddOns"
+local API_DOC = "Blizzard_APIDocumentation"
+local GEN_DOC = "Blizzard_APIDocumentationGenerated"
+
 local function LoadFile(path)
 	if lfs.attributes(path) then
 		local file = loadfile(path)
@@ -9,12 +14,12 @@ local function LoadFile(path)
 	end
 end
 
-local function LoadAddon(name)
-	local file = io.open(Path.join(name, name..".toc"))
+local function LoadAddon(path, name)
+	local file = io.open(Path.join(path, name..".toc"))
 	if file then
 		for line in file:lines() do
 			if line:find("%.lua") then
-				LoadFile(Path.join(name, line))
+				LoadFile(Path.join(path, line))
 			end
 		end
 		file:close()
@@ -22,11 +27,10 @@ local function LoadAddon(name)
 end
 
 function m:main(flavor)
-	local folder = Path.join("WowDocLoader")
-	require(Path.join(folder, "Compat"))
-	LoadAddon("Blizzard_APIDocumentation")
-	require(Path.join(folder, "MissingDocumentation"))
-	LoadAddon("Blizzard_APIDocumentationGenerated")
+	require(Path.join(SOURCE_FOLDER, "Compat"))
+	LoadAddon(Path.join(ADDONS_FOLDER, API_DOC), API_DOC)
+	require(Path.join(SOURCE_FOLDER, "MissingDocumentation"))
+	LoadAddon(Path.join(ADDONS_FOLDER, GEN_DOC), GEN_DOC)
 end
 
 return m
