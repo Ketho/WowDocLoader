@@ -28,7 +28,7 @@ local function LoadAddon(path, name)
 	end
 end
 
-function m:main(flavor)
+function m:main()
 	require(Path.join(loader_path, "Compat"))
 	LoadAddon(Path.join(addons_path, API_DOC), API_DOC)
 	require(Path.join(loader_path, "MissingDocumentation"))

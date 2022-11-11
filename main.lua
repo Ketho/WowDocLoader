@@ -14,4 +14,8 @@ function WowDocLoader:main(base_path, branch)
 	end
 end
 
-return WowDocLoader
+if not debug.getinfo(3) then -- running this file directly
+	WowDocLoader:main(".", "mainline")
+else
+	return WowDocLoader
+end
