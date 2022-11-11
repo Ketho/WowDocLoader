@@ -40,3 +40,17 @@ end
 function CreateFromMixins(...)
 	return Mixin({}, ...)
 end
+
+Enum = {
+	PlayerCurrencyFlagsDbFlags = {
+		InBackpack = 0,
+		UnusedInUI = 0,
+	}
+}
+
+Constants = {
+	CharCustomizationConstants = {
+		CHAR_CUSTOMIZE_CUSTOM_DISPLAY_OPTION_FIRST = 0,
+		CHAR_CUSTOMIZE_CUSTOM_DISPLAY_OPTION_LAST = 0,
+	}
+}
