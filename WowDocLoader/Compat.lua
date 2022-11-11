@@ -1,17 +1,4 @@
-ChatTypeInfo = {}
-ChatTypeInfo.SYSTEM = {}
-
--- MessageFrame
-DEFAULT_CHAT_FRAME = {}
-
-function DEFAULT_CHAT_FRAME:AddMessage(msg)
-	print(msg)
-end
-
-function DEFAULT_CHAT_FRAME:SetMaxLines()
-end
-
--- Lua API
+---@diagnostic disable-next-line: deprecated
 unpack = table.unpack
 tinsert = table.insert
 format = string.format
@@ -23,6 +10,19 @@ function string.split(delim, input)
 		table.insert(t, str)
 	end
 	return unpack(t)
+end
+
+ChatTypeInfo = {}
+ChatTypeInfo.SYSTEM = {}
+
+-- MessageFrame
+DEFAULT_CHAT_FRAME = {}
+
+function DEFAULT_CHAT_FRAME:AddMessage(msg)
+	print(msg)
+end
+
+function DEFAULT_CHAT_FRAME:SetMaxLines()
 end
 
 -- SharedXML\Mixin.lua

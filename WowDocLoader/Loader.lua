@@ -2,7 +2,7 @@ local lfs = require "lfs"
 local Path = require "path"
 local m = {}
 
-local SOURCE_FOLDER = "WowDocLoader"
+local LOADER_FOLDER = "WowDocLoader"
 local ADDONS_FOLDER = "AddOns"
 local API_DOC = "Blizzard_APIDocumentation"
 local GEN_DOC = "Blizzard_APIDocumentationGenerated"
@@ -27,9 +27,9 @@ local function LoadAddon(path, name)
 end
 
 function m:main(flavor)
-	require(Path.join(SOURCE_FOLDER, "Compat"))
+	require(Path.join(LOADER_FOLDER, "Compat"))
 	LoadAddon(Path.join(ADDONS_FOLDER, API_DOC), API_DOC)
-	require(Path.join(SOURCE_FOLDER, "MissingDocumentation"))
+	require(Path.join(LOADER_FOLDER, "MissingDocumentation"))
 	LoadAddon(Path.join(ADDONS_FOLDER, GEN_DOC), GEN_DOC)
 end
 
