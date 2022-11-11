@@ -41,14 +41,14 @@ function CreateFromMixins(...)
 	return Mixin({}, ...)
 end
 
-Enum = {
+Enum = Enum or {
 	PlayerCurrencyFlagsDbFlags = {
 		InBackpack = 0,
 		UnusedInUI = 0,
 	}
 }
 
-Constants = {
+Constants = Constants or {
 	CharCustomizationConstants = {
 		CHAR_CUSTOMIZE_CUSTOM_DISPLAY_OPTION_FIRST = 0,
 		CHAR_CUSTOMIZE_CUSTOM_DISPLAY_OPTION_LAST = 0,
