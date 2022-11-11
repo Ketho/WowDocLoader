@@ -2,12 +2,10 @@ local lfs = require "lfs"
 local Path = require "path"
 local m = {}
 
-local LOADER_FOLDER = "WowDocLoader"
-local ADDONS_FOLDER = "AddOns"
 local API_DOC = "Blizzard_APIDocumentation"
 local GEN_DOC = "Blizzard_APIDocumentationGenerated"
-local loader_path = Path.join(WowDocLoader_Path, LOADER_FOLDER)
-local addons_path = Path.join(WowDocLoader_Path, ADDONS_FOLDER)
+local loader_path = Path.join(WowDocLoader_Path, "src")
+local addons_path = Path.join(WowDocLoader_Path, "AddOns")
 
 local function LoadFile(path)
 	if lfs.attributes(path) then
