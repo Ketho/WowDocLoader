@@ -16,20 +16,20 @@ end
 
 local function LoadAddon(path, name)
 	local file = io.open(Path.join(path, name..".toc"))
-	if file then
-		for line in file:lines() do
-			if line:find("%.lua") then
-				LoadFile(Path.join(path, line))
-			end
-		end
-		file:close()
+	if not file then
+		error(string.format("%s has no TOC file", name))
 	end
+	for line in file:lines() do
+		if line:find("%.lua") then
+			LoadFile(Path.join(path, line))
+		end
+	end
+	file:close()
 end
 
 function m:main()
 	require(Path.join(loader_path, "Compat"))
 	LoadAddon(Path.join(addons_path, API_DOC), API_DOC)
-	require(Path.join(loader_path, "MissingDocumentation"))
 	LoadAddon(Path.join(addons_path, GEN_DOC), GEN_DOC)
 end
 
